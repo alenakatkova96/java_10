@@ -6,11 +6,45 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-
-    public void setCurrentStation_ValidNumber_Success() {
+    public void testSetCurrentStationWithValidValue() {
         Radio radio = new Radio();
         radio.setCurrentStation(5);
         Assertions.assertEquals(5, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStationWithNegativeValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(-1);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStationWithTooLargeValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(10);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStationWithLowerBoundaryValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStationWithUpperBoundaryValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(9);
+        Assertions.assertEquals(9, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStationWithInvalidValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(15);
+        Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
@@ -21,17 +55,45 @@ public class RadioTest {
     }
 
     @Test
-    public void setVolume_ValidValue_Success() {
+    public void testSetVolumeWithValidValue() {
         Radio radio = new Radio();
         radio.setVolume(50);
-       Assertions.assertEquals(50, radio.getVolume());
+        Assertions.assertEquals(50, radio.getVolume());
+    }
+
+    @Test
+    public void testSetVolumeWithNegativeValue() {
+        Radio radio = new Radio();
+        radio.setVolume(-1);
+        Assertions.assertEquals(0, radio.getVolume());
+    }
+
+    @Test
+    public void testSetVolumeWithTooLargeValue() {
+        Radio radio = new Radio();
+        radio.setVolume(101);
+        Assertions.assertEquals(100, radio.getVolume());
+    }
+
+    @Test
+    public void testSetVolumeWithLowerBoundaryValue() {
+        Radio radio = new Radio();
+        radio.setVolume(0);
+        Assertions.assertEquals(0, radio.getVolume());
+    }
+
+    @Test
+    public void testSetVolumeWithUpperBoundaryValue() {
+        Radio radio = new Radio();
+        radio.setVolume(100);
+        Assertions.assertEquals(100, radio.getVolume());
     }
 
     @Test
     public void setVolume_InvalidValue_NoChange() {
         Radio radio = new Radio();
         radio.setVolume(150);
-        Assertions.assertEquals(0, radio.getVolume());
+        Assertions.assertEquals(100, radio.getVolume());
     }
 
     @Test
